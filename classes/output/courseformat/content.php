@@ -89,10 +89,18 @@ class content extends content_base {
 
         if (!empty($sections)) {
             // Most formats uses section 0 as a separate section so we remove from the list.
-            if (!$singlesection) {
+            if (isset($sections[0]->num) && $sections[0]->num == 0) {
                 $initialsection = array_shift($sections);
-                $data->initialsection = $initialsection;
+            } else {
+                $initialsection = [];
             }
+
+            // Never show initial section during single section view.
+            if ($singlesection) {
+                $initialsection = [];
+            }
+
+            $data->initialsection = $initialsection;
             if (($editing) || ($singlesection)) { // This triggers the display of the standard list of section(s).
                 $data->sections = $sections;
             }
