@@ -89,8 +89,8 @@ class content extends content_base {
 
         if (!empty($sections)) {
             // Most formats uses section 0 as a separate section so we remove from the list.
-            $initialsection = array_shift($sections);
             if (!$singlesection) {
+                $initialsection = array_shift($sections);
                 $data->initialsection = $initialsection;
             }
             if (($editing) || ($singlesection)) { // This triggers the display of the standard list of section(s).
